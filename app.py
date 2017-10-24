@@ -15,11 +15,15 @@ def index():
     transactions = Transaction.query.all()
     return render_template('index.html', transactions=transactions)
 
+@app.route('/add')
+def add():
+    return render_template('add.html')
+
 if __name__ == '__main__':
     if 'convert_csv' in sys.argv:
         with app.app_context():
             try: # delete the Database if it already exists.
-                db.session.query(Transactions).delete()
+                db.session.query(Transaction).delete()
                 db.session.commit()
             except:
                 pass
