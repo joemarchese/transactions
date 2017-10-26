@@ -1,6 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
 from models import db, Transaction
-import sys
+from forms import AddTransactionForm
 
 
 app = Flask(__name__)
@@ -12,9 +12,21 @@ def index():
     transactions = Transaction.query.all()
     return render_template('index.html', transactions=transactions)
 
-@app.route('/add')
+@app.route('/add', methods=['GET', 'POST'])
 def add():
-    return render_template('add.html')
+    form = AddTransactionForm(request.form)
+    if request.method == 'POST' and form.validate():
+        with app.app_context():
+            transaction = Transaction(date=form.date.data,
+                                      kind=form.kind.data,
+                                      category=form.category.data,
+                                      sub_category=form.sub_category.data,
+                                      description=form.description.data,
+                                      amount=form.amount.data)
+            db.session.add(transaction)
+            db.session.commit()
+            return redirect(url_for('index'))
+    return render_template('add.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)

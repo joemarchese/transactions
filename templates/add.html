@@ -1,67 +1,69 @@
 {% extends 'base.html' %}
 {% block title %}Add Transaction{% endblock %}
+{% from 'macros.html' import render_form %}
 {% block content %}
-<div class='container'>
-  <form>
-    <div class="form-group row">
-      <label for="date-input" class="col-2 col-form-label">Date</label>
-      <div class="col-10">
-        <input class="form-control" type="date" id="date-input">
-      </div>
-    </div>
+{{ render_form(form, action_url='/add', action_text='Submit Form') }}
+<!-- <form class="form-horizontal">
+<fieldset>
 
-    <fieldset class="form-group">
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-          Income
-        </label>
-      </div>
-      <div class="form-check">
-      <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-          Expense
-        </label>
-      </div>
-      <div class="form-check">
-      <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
-          Benefit
-        </label>
-      </div>
-    </fieldset>
+<legend>Add Transaction</legend>
 
-    <div class="form-group row">
-    <label for="example-text-input" class="col-2 col-form-label">Category</label>
-    <div class="col-10">
-      <input class="form-control" type="text" id="category">
-    </div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Date">Date</label>
+  <div class="col-md-4">
+    <input class="form-control" type="date" id="date-input">
   </div>
-
-  <div class="form-group row">
-    <label for="example-text-input" class="col-2 col-form-label">Sub-Category</label>
-    <div class="col-10">
-      <input class="form-control" type="text" id="sub-category">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="example-text-input" class="col-2 col-form-label">Description</label>
-    <div class="col-10">
-      <input class="form-control" type="text" id="description">
-    </div>
-  </div>
-
-
-    <div class="form-group row">
-    <label for="example-number-input" class="col-2 col-form-label">Amount</label>
-      <div class="col-10">
-        <input class="form-control" type="number" id="amount">
-      </div>
-    </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
 </div>
 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Kind</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="selectbasic" class="form-control">
+      <option value="Income">Income</option>
+      <option value="Expense">Expense</option>
+      <option value="Benefit">Benefit</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Category">Category</label>
+  <div class="col-md-4">
+  <input id="Category" name="Category" type="text" placeholder="Food, Office Work, Bills, HSA" class="form-control input-md" required="">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Sub-Category">Sub-Category</label>
+  <div class="col-md-4">
+  <input id="Sub-Category" name="Sub-Category" type="text" placeholder="Eating Out, Work-Job, Cell Phone, Health Savings Account" class="form-control input-md" required="">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Description">Description</label>
+  <div class="col-md-4">
+  <input id="Description" name="Description" type="text" placeholder="Vinnie's Italian Eatery, Desk Occupant, Cell Phone Provider, HSA Provider" class="form-control input-md">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Amount">Amount</label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <input id="Amount" name="Amount" class="form-control" placeholder="42.24" type="text" required="">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Submit">Submit</label>
+  <div class="col-md-4">
+    <button id="Submit" name="Submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+
+</fieldset>
+</form> -->
 {% endblock %}

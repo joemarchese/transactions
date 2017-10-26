@@ -18,6 +18,13 @@ class Transaction(db.Entity):
 db.bind('sqlite', 'transactions.db', create_db=True)
 db.generate_mapping(create_tables=True)
 
+"""
+CSV Example:
+Date,Year,Month,Kind,Category,Type,Description,Amount
+2015/6/16,2015,6,Income,Music,Guitar Lessons,Konstantin,14.00
+2015/1/30,2015,1,Expense,Food,Eating Out,Sushi CC,10.00
+"""
+
 @db_session
 def migrate_csv():
     with open('Income - Expenses - Transactions.csv') as csvfile:
