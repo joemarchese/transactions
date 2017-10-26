@@ -1,69 +1,14 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macros %}
 {% block title %}Add Transaction{% endblock %}
-{% from 'macros.html' import render_form %}
 {% block content %}
-{{ render_form(form, action_url='/add', action_text='Submit Form') }}
-<!-- <form class="form-horizontal">
-<fieldset>
-
-<legend>Add Transaction</legend>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Date">Date</label>
-  <div class="col-md-4">
-    <input class="form-control" type="date" id="date-input">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectbasic">Kind</label>
-  <div class="col-md-4">
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="Income">Income</option>
-      <option value="Expense">Expense</option>
-      <option value="Benefit">Benefit</option>
-    </select>
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Category">Category</label>
-  <div class="col-md-4">
-  <input id="Category" name="Category" type="text" placeholder="Food, Office Work, Bills, HSA" class="form-control input-md" required="">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Sub-Category">Sub-Category</label>
-  <div class="col-md-4">
-  <input id="Sub-Category" name="Sub-Category" type="text" placeholder="Eating Out, Work-Job, Cell Phone, Health Savings Account" class="form-control input-md" required="">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Description">Description</label>
-  <div class="col-md-4">
-  <input id="Description" name="Description" type="text" placeholder="Vinnie's Italian Eatery, Desk Occupant, Cell Phone Provider, HSA Provider" class="form-control input-md">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Amount">Amount</label>
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon">$</span>
-      <input id="Amount" name="Amount" class="form-control" placeholder="42.24" type="text" required="">
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Submit">Submit</label>
-  <div class="col-md-4">
-    <button id="Submit" name="Submit" class="btn btn-primary">Submit</button>
-  </div>
-</div>
-
-</fieldset>
-</form> -->
+{% call macros.render_form(form, action_url='/add', action_text='Add Transaction',
+                  class_='add-transaction-form') %}
+{{ macros.render_field(form.date, placeholder='2017-10-26', type='date') }}
+{{ macros.render_field(form.kind, placeholder='Income - Expense - Benefit', type='text') }}
+{{ macros.render_field(form.category, placeholder="Food, Office Work, Bills, HSA", type='text') }}
+{{ macros.render_field(form.sub_category, placeholder="Eating Out, Work-Job, Cell Phone, Health Savings Account", type='text') }}
+{{ macros.render_field(form.description, placeholder="Vinnie's Italian Eatery, Desk Occupant, Cell Phone Provider, HSA Provider", type='text') }}
+{{ macros.render_field(form.amount, placeholder='42.24', type='text') }}
+{% endcall %}
 {% endblock %}

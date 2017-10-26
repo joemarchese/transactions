@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import render_form %}
+{% block title %}Delete Transaction{% endblock %}
+{% block content %}
+{{ render_form(form, action_url='/delete', action_text='Delete Transaction',
+               class_='delete-transaction-form') }}
+{% endblock %}

@@ -5,6 +5,7 @@
     <table class='table table-sm table-responsive'>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Date</th>
           <th>Kind</th>
           <th>Category</th>
@@ -16,6 +17,7 @@
       <tbody>
         {% for t in transactions %}
         <tr>
+          <td>{{ t.id }}</td>
           <td>{{ t.date }}</td>
           <td>{{ t.kind }}</td>
           <td>{{ t.category }}</td>

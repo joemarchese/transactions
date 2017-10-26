@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect
 from models import db, Transaction
-from forms import AddTransactionForm
+from forms import AddTransactionForm, DeleteTransactionForm
 
 
 app = Flask(__name__)
@@ -27,6 +27,17 @@ def add():
             db.session.commit()
             return redirect(url_for('index'))
     return render_template('add.html', form=form)
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    form = DeleteTransactionForm(request.form)
+    if request.method == 'POST' and form.validate():
+        with app.app_context():
+            transaction = Transaction.query.get_or_404(form.transaction_id.data)
+            db.session.delete(transaction)
+            db.session.commit()
+            return redirect(url_for('index'))
+    return render_template('delete.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
